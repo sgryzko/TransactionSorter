@@ -16,14 +16,21 @@ void OutputTotal(const std::string& category, CTransactionSorter* sorter)
 
 int main()
 {
+	std::cout << "Welcome to The Transaction Sorter.\n\n";
+	std::cout << "Please specify the full path of a valid CSV transaction file.\n";
+
+	std::string transactionFile;
+	std::cin >> transactionFile;
+
 	CTransactionSorter sorter;
 	CFileReader reader(&sorter);
 
-	reader.Process("C:\\Users\\Shane\\Downloads\\AmexTransactionsApr14-30_shorter.csv");
+	// TODO: Wrap this call and re-prompt if it doesn't work properly.
+	reader.Process(transactionFile);
 
 	const std::string directions = "please enter C for Carolyn, S for Shane, or J for Joint.\n";
 
-	std::cout << "For each transaction, " << directions << "\n";
+	std::cout << "\nThanks!\nFor each transaction, " << directions << "\n";
 	std::cout << "When you're done, I'll tell you who owes what.\n\n";
 	std::cout << "Date         Amount Description                              Category\n";
 	std::cout << "---------------------------------------------------------------------";
@@ -33,11 +40,10 @@ int main()
 	while ((currentTransaction = sorter.GetNextUnsortedTransaction()) != nullptr)
 	{
 		std::cout << std::endl << currentTransaction->GetDate();
-		std::printf(" %*.2f", 8, currentTransaction->GetAmount());		
-		//std::cout << " " << currentTransaction->GetDescription() << " ";
+		std::printf(" %*.2f", 8, currentTransaction->GetAmount());
 		std::printf(" %-40.40s ", currentTransaction->GetDescription().c_str());
 
-		char category = 'u';
+		char category;
 		std::cin >> category;
 
 		switch (category)
