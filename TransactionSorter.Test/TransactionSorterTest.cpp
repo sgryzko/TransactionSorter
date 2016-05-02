@@ -181,7 +181,7 @@ namespace TransactionSorterTest
 			const double amount = 1999.00;
 			const std::string date = "2016-05-02";
 			const std::string description = "ROLI Seabord GRAND";
-			auto transaction = sorter.AddTransaction(amount, date, description);
+			sorter.AddTransaction(amount, date, description);
 		}
 
 		TEST_METHOD(TransactionHasDateAndDescription)
@@ -202,6 +202,33 @@ namespace TransactionSorterTest
 			CTransaction transaction(amount, date, description);
 
 			Assert::AreEqual(date, transaction.GetDate());
+		}
+
+		TEST_METHOD(TransactionGetDescription)
+		{
+			const double amount = 1999.00;
+			const std::string date = "2016-05-02";
+			const std::string description = "ROLI Seabord GRAND";
+
+			CTransaction transaction(amount, date, description);
+
+			Assert::AreEqual(description, transaction.GetDescription());
+		}
+
+		// Too big to be called a unit test?
+		TEST_METHOD(AddTransactionGetDateAndDescription)
+		{
+			CTransactionSorter sorter;
+
+			const double amount = 1999.00;
+			const std::string date = "2016-05-02";
+			const std::string description = "ROLI Seabord GRAND";
+			sorter.AddTransaction(amount, date, description);
+
+			auto transaction = sorter.GetNextUnsortedTransaction();
+
+			Assert::AreEqual(date, transaction->GetDate());
+			Assert::AreEqual(description, transaction->GetDescription());
 		}
 	};
 }

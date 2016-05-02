@@ -28,7 +28,7 @@ void CFileReader::Process(const std::string& filePath)
 		auto amount = GetColumn(AMOUNT, line);
 		auto description = GetColumn(DESCRIPTION, line);
 
-		_sorter->AddTransaction(std::stod(amount));//, date, description);
+		_sorter->AddTransaction(std::stod(amount), date, description);
 	}
 }
 
