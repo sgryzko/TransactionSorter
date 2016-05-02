@@ -173,5 +173,35 @@ namespace TransactionSorterTest
 
 			Assert::AreEqual(transaction, sorter.GetNextUnsortedTransaction());
 		}
+
+		TEST_METHOD(AddTransactionWithDateAndDescription)
+		{
+			CTransactionSorter sorter;
+
+			const double amount = 1999.00;
+			const std::string date = "2016-05-02";
+			const std::string description = "ROLI Seabord GRAND";
+			auto transaction = sorter.AddTransaction(amount, date, description);
+		}
+
+		TEST_METHOD(TransactionHasDateAndDescription)
+		{
+			const double amount = 1999.00;
+			const std::string date = "2016-05-02";
+			const std::string description = "ROLI Seabord GRAND";
+
+			CTransaction transaction(amount, date, description);
+		}
+
+		TEST_METHOD(TransactionGetDate)
+		{
+			const double amount = 1999.00;
+			const std::string date = "2016-05-02";
+			const std::string description = "ROLI Seabord GRAND";
+
+			CTransaction transaction(amount, date, description);
+
+			Assert::AreEqual(date, transaction.GetDate());
+		}
 	};
 }

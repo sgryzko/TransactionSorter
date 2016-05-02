@@ -3,29 +3,63 @@
 
 #include "stdafx.h"
 #include "FileReader.h"
+#include <fstream>
+#include <sstream>
+#include "..\TransactionSorter\TransactionSorter.h"
 
-
-// This is an example of an exported variable
-FILEREADER_API int nFileReader=0;
-
-// This is an example of an exported function.
-FILEREADER_API int fnFileReader(void)
-{
-    return 42;
-}
 
 // This is the constructor of a class that has been exported.
 // see FileReader.h for the class definition
-CFileReader::CFileReader()
+CFileReader::CFileReader(CTransactionSorter* sorter)
 {
-    return;
+	_sorter = sorter;
 }
 
-void CFileReader::Read(std::string filePath)
+void CFileReader::Process(const std::string& filePath)
 {
+	// Open File (omit error checking for now)
+	std::ifstream file(filePath);
+	std::string line;
+
+	// Each line in the file is a new transaction
+	while (std::getline(file, line))
+	{
+		auto date = GetColumn(DATE, line);
+		auto amount = GetColumn(AMOUNT, line);
+		auto description = GetColumn(DESCRIPTION, line);
+
+		_sorter->AddTransaction(std::stod(amount));//, date, description);
+	}
 }
 
-std::vector<std::vector<std::string>> CFileReader::GetRows() const
+// TODO: Hacky method. Very inefficient. Refactor.
+std::string CFileReader::GetColumn(expectedColumns column, const std::string& line) const
 {
-	return std::vector<std::vector<std::string>>();
+	std::stringstream lineStream(line);
+	std::string result;
+
+	// Use getline to split the line at each comma.
+	int i = 0;
+	while (i <= column)
+	{
+		std::getline(lineStream, result, ',');
+		++i;
+	}
+
+	TrimQuotations(result);
+	return result;
+}
+
+void CFileReader::TrimQuotations(std::string& s) const
+{
+	std::string getRidOf = "\"";
+	std::string replaceWith = "";
+
+	// Inspired by http://stackoverflow.com/a/14678964/1704355
+	size_t pos = 0;
+	while ((pos = s.find(getRidOf, pos)) != std::string::npos)
+	{
+		s.replace(pos, getRidOf.length(), replaceWith);
+		pos += replaceWith.length();
+	}
 }

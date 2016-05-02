@@ -13,15 +13,27 @@
 #include <string>
 #include <vector>
 
+class CTransactionSorter;
+
 // This class is exported from the FileReader.dll
 class FILEREADER_API CFileReader {
 public:
-	CFileReader(void);
+	CFileReader(CTransactionSorter* sorter);
 
-	void Read(std::string filePath);
-	std::vector<std::vector<std::string>> GetRows() const;
+	void Process(const std::string& filePath);
+
+private:
+	enum expectedColumns
+	{
+		DATE,
+		REFERENCE,
+		AMOUNT,
+		DESCRIPTION,
+		PROCESS_DATE
+	};
+
+	std::string GetColumn(expectedColumns column, const std::string& line) const;
+	void TrimQuotations(std::string& s) const;
+
+	CTransactionSorter* _sorter;
 };
-
-extern FILEREADER_API int nFileReader;
-
-FILEREADER_API int fnFileReader(void);

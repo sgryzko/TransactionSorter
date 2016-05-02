@@ -10,9 +10,10 @@ CTransactionSorter::CTransactionSorter()
 {
 }
 
-std::shared_ptr<CTransaction> CTransactionSorter::AddTransaction(const double amount)
+std::shared_ptr<CTransaction> CTransactionSorter::AddTransaction(const double amount,
+	const std::string& date, const std::string& description)
 {
-	auto transaction = std::shared_ptr<CTransaction>(new CTransaction(amount));
+	auto transaction = std::make_shared<CTransaction>(amount);
 	_transactions.push_back(transaction);
 
 	return transaction;
@@ -46,15 +47,21 @@ std::shared_ptr<CTransaction> CTransactionSorter::GetNextUnsortedTransaction()
 	return std::shared_ptr<CTransaction>();
 }
 
-CTransaction::CTransaction(double amount)
+CTransaction::CTransaction(double amount, const std::string& date, const std::string& description)
 {
 	_amount = amount;
+	_date = date;
 	_group = defaultGroup;
 }
 
 double CTransaction::GetAmount() const
 {
 	return _amount;
+}
+
+std::string CTransaction::GetDate() const
+{
+	return _date;
 }
 
 std::string CTransaction::GetGroup() const

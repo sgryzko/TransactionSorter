@@ -19,15 +19,18 @@ const std::string defaultGroup = "Unsorted";
 // This class is exported from the TransactionSorter.dll
 class TRANSACTIONSORTER_API CTransaction {
 public:
-	CTransaction(double amount);
+	CTransaction(double amount, const std::string& date = "", 
+		const std::string& description = "");
 
 	double GetAmount() const;
+	std::string GetDate() const;
 	std::string GetGroup() const;
 
 	void SetGroup(const std::string& group);
 
 private:
 	double _amount;
+	std::string _date;
 	std::string _group;
 };
 
@@ -36,7 +39,8 @@ class TRANSACTIONSORTER_API CTransactionSorter {
 public:
 	CTransactionSorter(void);
 
-	std::shared_ptr<CTransaction> AddTransaction(const double amount);
+	std::shared_ptr<CTransaction> AddTransaction(const double amount, 
+		const std::string& date = "", const std::string& description = "");
 	double GetTotal(const std::string& group = defaultGroup) const;
 	std::shared_ptr<CTransaction> GetNextUnsortedTransaction();
 

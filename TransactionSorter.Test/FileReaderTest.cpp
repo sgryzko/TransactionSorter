@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
 #include "..\FileReader\FileReader.h"
+#include "..\TransactionSorter\TransactionSorter.h"
 
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -13,20 +14,24 @@ namespace FileReaderTest
 
 		TEST_METHOD(CanBeCreated)
 		{
-			CFileReader reader;
+			CTransactionSorter sorter;
+			CFileReader reader(&sorter);
 		}
 
-		TEST_METHOD(OpenFile)
+		TEST_METHOD(ProcessFile)
 		{
-			CFileReader reader;
-			reader.Read("C:\Users\Shane\Downloads\AmexTransactionsApr14-30.csv");
+			CTransactionSorter sorter;
+			CFileReader reader(&sorter);
+			reader.Process("C:\\Users\\Shane\\Downloads\\AmexTransactionsApr14-30.csv");
 		}
 
-		TEST_METHOD(GetRows)
+		TEST_METHOD(ProcessFileSum)
 		{
-			CFileReader reader;
-			reader.Read("C:\Users\Shane\Downloads\AmexTransactionsApr14-30.csv");
-			auto rows = reader.GetRows();
+			CTransactionSorter sorter;
+			CFileReader reader(&sorter);
+			reader.Process("C:\\Users\\Shane\\Downloads\\AmexTransactionsApr14-30.csv");
+
+			Assert::AreEqual(-2293.45, sorter.GetTotal());
 		}
 	};
 }
