@@ -176,6 +176,14 @@
       <Project>{9667d6e8-8687-4327-9d23-49750080f548}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ExampleTransactionFile.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ExampleTransactionFile.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

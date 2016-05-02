@@ -22,14 +22,14 @@ namespace FileReaderTest
 		{
 			CTransactionSorter sorter;
 			CFileReader reader(&sorter);
-			reader.Process("C:\\Users\\Shane\\Downloads\\AmexTransactionsApr14-30.csv");
+			reader.Process("ExampleTransactionFile.csv");
 		}
 
 		TEST_METHOD(ProcessFileSum)
 		{
 			CTransactionSorter sorter;
 			CFileReader reader(&sorter);
-			reader.Process("C:\\Users\\Shane\\Downloads\\AmexTransactionsApr14-30.csv");
+			reader.Process("ExampleTransactionFile.csv");
 
 			Assert::AreEqual(-2293.45, sorter.GetTotal());
 		}
