@@ -43,7 +43,3 @@ public:
 private:
 	std::vector<std::shared_ptr<CTransaction>> _transactions;
 };
-
-extern TRANSACTIONSORTER_API int nTransactionSorter;
-
-TRANSACTIONSORTER_API int fnTransactionSorter(void);

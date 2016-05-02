@@ -4,16 +4,6 @@
 #include "stdafx.h"
 #include "TransactionSorter.h"
 
-
-// This is an example of an exported variable
-TRANSACTIONSORTER_API int nTransactionSorter=0;
-
-// This is an example of an exported function.
-TRANSACTIONSORTER_API int fnTransactionSorter(void)
-{
-    return 42;
-}
-
 // This is the constructor of a class that has been exported.
 // see TransactionSorter.h for the class definition
 CTransactionSorter::CTransactionSorter()
