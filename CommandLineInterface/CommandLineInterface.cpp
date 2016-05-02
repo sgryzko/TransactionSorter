@@ -9,8 +9,8 @@
 
 void OutputTotal(const std::string& category, CTransactionSorter* sorter)
 {
-	std::cout << category << ": ";
-	std::printf("%*.2f", 8, sorter->GetTotal(category));
+	std::printf("%-8s   ", category.c_str());
+	std::printf("%8.2f", sorter->GetTotal(category));
 	std::cout << "\n";
 }
 
@@ -25,16 +25,17 @@ int main()
 
 	std::cout << "For each transaction, " << directions << "\n";
 	std::cout << "When you're done, I'll tell you who owes what.\n\n";
-	std::cout << "Date         Amount Description                            \n";
-	std::cout << "------------------------------------------------------------";
+	std::cout << "Date         Amount Description                              Category\n";
+	std::cout << "---------------------------------------------------------------------";
 
 	std::shared_ptr<CTransaction> currentTransaction = nullptr;
 
 	while ((currentTransaction = sorter.GetNextUnsortedTransaction()) != nullptr)
 	{
-		std::cout << std::endl << currentTransaction->GetDate() << " ";
-		std::printf("%*.2f", 8, currentTransaction->GetAmount());		
-		std::cout << " " << currentTransaction->GetDescription() << " ";
+		std::cout << std::endl << currentTransaction->GetDate();
+		std::printf(" %*.2f", 8, currentTransaction->GetAmount());		
+		//std::cout << " " << currentTransaction->GetDescription() << " ";
+		std::printf(" %-40.40s ", currentTransaction->GetDescription().c_str());
 
 		char category = 'u';
 		std::cin >> category;
@@ -59,7 +60,7 @@ int main()
 		}
 	}
 
-	std::cout << "\n\n        TOTALS        \n----------------------\n";
+	std::cout << "\n\nCategory      Total\n-------------------\n";
 	OutputTotal("Carolyn", &sorter);
 	OutputTotal("Shane", &sorter);
 	OutputTotal("Joint", &sorter);
