@@ -10,11 +10,16 @@
 #define FILEREADER_API __declspec(dllimport)
 #endif
 
+#include <string>
+#include <vector>
+
 // This class is exported from the FileReader.dll
 class FILEREADER_API CFileReader {
 public:
 	CFileReader(void);
-	// TODO: add your methods here.
+
+	void Read(std::string filePath);
+	std::vector<std::vector<std::string>> GetRows() const;
 };
 
 extern FILEREADER_API int nFileReader;

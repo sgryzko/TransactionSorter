@@ -20,3 +20,12 @@ CFileReader::CFileReader()
 {
     return;
 }
+
+void CFileReader::Read(std::string filePath)
+{
+}
+
+std::vector<std::vector<std::string>> CFileReader::GetRows() const
+{
+	return std::vector<std::vector<std::string>>();
+}

@@ -11,9 +11,22 @@ namespace FileReaderTest
 	{
 	public:
 
-		TEST_METHOD(FileReaderCanBeCreated)
+		TEST_METHOD(CanBeCreated)
 		{
 			CFileReader reader;
+		}
+
+		TEST_METHOD(OpenFile)
+		{
+			CFileReader reader;
+			reader.Read("C:\Users\Shane\Downloads\AmexTransactionsApr14-30.csv");
+		}
+
+		TEST_METHOD(GetRows)
+		{
+			CFileReader reader;
+			reader.Read("C:\Users\Shane\Downloads\AmexTransactionsApr14-30.csv");
+			auto rows = reader.GetRows();
 		}
 	};
 }
