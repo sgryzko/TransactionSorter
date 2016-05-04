@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileReader", "FileReader\Fi
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CommandLineInterface", "CommandLineInterface\CommandLineInterface.vcxproj", "{664C6721-84E8-4DC9-83F2-EA711C329C41}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ListenersAndBroadcastersTutorial", "tutorial_listeners_and_broadcasters\Builds\VisualStudio2015\ListenersAndBroadcastersTutorial.vcxproj", "{3C80945B-D93F-E4ED-707C-A6702FA3B2FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -51,6 +53,12 @@ Global
 		{664C6721-84E8-4DC9-83F2-EA711C329C41}.Release|x64.Build.0 = Release|x64
 		{664C6721-84E8-4DC9-83F2-EA711C329C41}.Release|x86.ActiveCfg = Release|Win32
 		{664C6721-84E8-4DC9-83F2-EA711C329C41}.Release|x86.Build.0 = Release|Win32
+		{3C80945B-D93F-E4ED-707C-A6702FA3B2FF}.Debug|x64.ActiveCfg = Debug|Win32
+		{3C80945B-D93F-E4ED-707C-A6702FA3B2FF}.Debug|x86.ActiveCfg = Debug|Win32
+		{3C80945B-D93F-E4ED-707C-A6702FA3B2FF}.Debug|x86.Build.0 = Debug|Win32
+		{3C80945B-D93F-E4ED-707C-A6702FA3B2FF}.Release|x64.ActiveCfg = Release|Win32
+		{3C80945B-D93F-E4ED-707C-A6702FA3B2FF}.Release|x86.ActiveCfg = Release|Win32
+		{3C80945B-D93F-E4ED-707C-A6702FA3B2FF}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
