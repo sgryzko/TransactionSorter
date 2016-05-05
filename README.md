@@ -8,4 +8,6 @@ To build: Currently Visual Studio 2015 is the only supported IDE
 
 To test: Run the unit tests in the UnitTests project
 
-Upcoming fixes and development: See https://github.com/sgryzko/TransactionSorter/issues
+See Github for latest code: https://github.com/sgryzko/TransactionSorter
+
+Upcoming fixes and features: See https://github.com/sgryzko/TransactionSorter/issues
