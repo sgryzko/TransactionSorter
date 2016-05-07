@@ -14,7 +14,9 @@
 #include <vector>
 #include <memory>
 
-const std::string defaultGroup = "Unsorted";
+const std::string unsortedGroup = "Unsorted";
+
+// TODO: Move CTransaction class into a separate file.
 
 // This class is exported from the TransactionSorter.dll
 class TRANSACTIONSORTER_API CTransaction {
@@ -23,9 +25,11 @@ public:
 		const std::string& description);
 
 	double GetAmount() const;
-	std::string GetDate() const;
-	std::string GetDescription() const;
-	std::string GetGroup() const;
+	const std::string& GetDate() const;
+	const std::string& GetDescription() const;
+	const std::string& GetGroup() const;
+
+	// TODO: Disable copy constructor and assignment operator so that the only way to create Transactions is through the sorter?
 
 	void SetGroup(const std::string& group);
 
@@ -43,8 +47,11 @@ public:
 
 	std::shared_ptr<CTransaction> AddTransaction(const double amount, 
 		const std::string& date = "", const std::string& description = "");
-	double GetTotal(const std::string& group = defaultGroup) const;
+	double GetTotal(const std::string& group = unsortedGroup) const;
 	std::shared_ptr<CTransaction> GetNextUnsortedTransaction();
+
+	int getTransactionCount(const std::string& group = "") const;
+	int CTransactionSorter::getUnsortedTransactionCount() const;
 
 private:
 	std::vector<std::shared_ptr<CTransaction>> _transactions;

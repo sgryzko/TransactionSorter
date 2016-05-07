@@ -38,7 +38,7 @@ std::shared_ptr<CTransaction> CTransactionSorter::GetNextUnsortedTransaction()
 {
 	for each (auto transaction in _transactions)
 	{
-		if (transaction->GetGroup() == defaultGroup)
+		if (transaction->GetGroup() == unsortedGroup)
 		{
 			return transaction;
 		}
@@ -52,7 +52,7 @@ CTransaction::CTransaction(double amount, const std::string& date, const std::st
 	_amount = amount;
 	_date = date;
 	_description = description;
-	_group = defaultGroup;
+	_group = unsortedGroup;
 }
 
 double CTransaction::GetAmount() const
@@ -60,17 +60,17 @@ double CTransaction::GetAmount() const
 	return _amount;
 }
 
-std::string CTransaction::GetDate() const
+const std::string& CTransaction::GetDate() const
 {
 	return _date;
 }
 
-std::string CTransaction::GetDescription() const
+const std::string& CTransaction::GetDescription() const
 {
 	return _description;
 }
 
-std::string CTransaction::GetGroup() const
+const std::string& CTransaction::GetGroup() const
 {
 	return _group;
 }
@@ -78,4 +78,24 @@ std::string CTransaction::GetGroup() const
 void CTransaction::SetGroup(const std::string& group)
 {
 	_group = group;
+}
+
+int CTransactionSorter::getTransactionCount(const std::string & group) const
+{
+	int count = 0;
+
+	for each (auto transaction in _transactions)
+	{
+		if (group == "" || transaction->GetGroup() == group)
+		{
+			++count;
+		}
+	}
+
+	return count;
+}
+
+int CTransactionSorter::getUnsortedTransactionCount() const
+{
+	return getTransactionCount(unsortedGroup);
 }

@@ -97,8 +97,8 @@ namespace TransactionSorterTest
 			const double amount = 3.33;
 			auto transaction = sorter.AddTransaction(amount);
 
-			const std::string defaultGroup = "Unsorted";
-			Assert::AreEqual(defaultGroup, transaction->GetGroup());
+			const std::string unsortedGroup = "Unsorted";
+			Assert::AreEqual(unsortedGroup, transaction->GetGroup());
 		}
 
 		TEST_METHOD(TransactionSetGroupWorks)
@@ -215,7 +215,6 @@ namespace TransactionSorterTest
 			Assert::AreEqual(description, transaction.GetDescription());
 		}
 
-		// Too big to be called a unit test?
 		TEST_METHOD(AddTransactionGetDateAndDescription)
 		{
 			CTransactionSorter sorter;
@@ -229,6 +228,53 @@ namespace TransactionSorterTest
 
 			Assert::AreEqual(date, transaction->GetDate());
 			Assert::AreEqual(description, transaction->GetDescription());
+		}
+
+		TEST_METHOD(GetGroupCountNoTransactions)
+		{
+			CTransactionSorter sorter;
+			Assert::AreEqual(0, sorter.getTransactionCount());
+		}
+
+		TEST_METHOD(GetGroupCount)
+		{
+			CTransactionSorter sorter;
+
+			const double amount = 3.33;
+			auto transaction = sorter.AddTransaction(amount);
+
+			const std::string group = "Shane";
+			transaction->SetGroup(group);
+
+			Assert::AreEqual(1, sorter.getTransactionCount("Shane"));
+		}
+
+		TEST_METHOD(GetGroupCountNoGroupSpecified)
+		{
+			CTransactionSorter sorter;
+
+			const double amount = 3.33;
+			sorter.AddTransaction(amount);
+
+			Assert::AreEqual(1, sorter.getTransactionCount());
+
+			sorter.AddTransaction(amount);
+			Assert::AreEqual(2, sorter.getTransactionCount());
+		}
+
+		TEST_METHOD(GetUnsortedTransactionCount)
+		{
+			CTransactionSorter sorter;
+
+			const double amount = 3.33;
+			auto transaction = sorter.AddTransaction(amount);
+
+			Assert::AreEqual(1, sorter.getUnsortedTransactionCount());
+
+			const std::string group = "Shane";
+			transaction->SetGroup(group);
+
+			Assert::AreEqual(0, sorter.getUnsortedTransactionCount());
 		}
 	};
 }
