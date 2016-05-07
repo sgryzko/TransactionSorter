@@ -31,7 +31,8 @@ namespace FileReaderTest
 			CFileReader reader(&sorter);
 			reader.Process("ExampleTransactionFile.csv");
 
-			Assert::AreEqual(-2293.45, sorter.GetTotal());
+			double tolerance = 0.0001;
+			Assert::AreEqual(855.96, sorter.GetTotal(), tolerance);
 		}
 	};
 }
