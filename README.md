@@ -43,3 +43,10 @@ The business logic of the app can be tested as follows:
 ##Future development:
 
 For upcoming fixes and features, see [github](https://github.com/sgryzko/TransactionSorter/issues).
+
+##Acknowledgements:
+
+A big thank you to the following people for their feedback on my code!
+
+ - [Ryan Selk](http://ryanselk.com/)
+ - [Konstantinos Stavrou](https://www.strava.com/athletes/3006669)
