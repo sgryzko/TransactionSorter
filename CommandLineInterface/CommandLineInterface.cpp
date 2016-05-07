@@ -20,7 +20,7 @@ int main()
 	std::cout << "Please specify the full path of a valid CSV transaction file.\n";
 
 	std::string transactionFile;
-	std::cin >> transactionFile;
+	std::getline(std::cin, transactionFile);
 
 	CTransactionSorter sorter;
 	CFileReader reader(&sorter);
