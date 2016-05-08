@@ -1,6 +1,8 @@
 #include "stdafx.h"
+#define DONT_SET_USING_JUCE_NAMESPACE 1
+#include "../JuceLibraryCode/JuceHeader.h"
+
 #include "CppUnitTest.h"
-#include "..\TransactionSorter\TransactionSorter.h"
 
 #include <string>
 

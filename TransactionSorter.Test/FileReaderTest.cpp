@@ -1,7 +1,8 @@
 #include "stdafx.h"
+#define DONT_SET_USING_JUCE_NAMESPACE 1
+#include "../JuceLibraryCode/JuceHeader.h"
+
 #include "CppUnitTest.h"
-#include "..\FileReader\FileReader.h"
-#include "..\TransactionSorter\TransactionSorter.h"
 
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
