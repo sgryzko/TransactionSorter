@@ -1,87 +1,67 @@
-#include "stdafx.h"
-#include "CppUnitTest.h"
-#include "..\TransactionSorter\TransactionSorter.h"
 
-#include <string>
+#include "../JuceLibraryCode/JuceHeader.h"
 
-using namespace Microsoft::VisualStudio::CppUnitTestFramework;
-
-namespace Microsoft
+class TransactionSorterTest : public UnitTest
 {
-	namespace VisualStudio
+public:
+	TransactionSorterTest() : UnitTest("TransactionSorter testing") {}
+	void runTest() override
 	{
-		namespace CppUnitTestFramework
-		{
-			template <>
-			static std::wstring ToString<std::shared_ptr<CTransaction>>(const std::shared_ptr<CTransaction>& transaction)
-			{
-				return std::to_wstring(transaction->GetAmount());
-			}
-		}
-	}
-}
-
-namespace TransactionSorterTest
-{		
-	TEST_CLASS(UnitTest1)
-	{
-	public:
-		
-		TEST_METHOD(TransactionSorterCanBeCreated)
+		beginTest("TransactionSorterCanBeCreated");
 		{
 			CTransactionSorter sorter;
 		}
 
-		TEST_METHOD(AddTransaction)
+		beginTest("AddTransaction");
 		{
 			CTransactionSorter sorter;
 			sorter.AddTransaction(3.33);
 		}
 
-		TEST_METHOD(GetTotal)
+		beginTest("GetTotal");
 		{
 			CTransactionSorter sorter;
 			const double amount = 3.33;
 
 			sorter.AddTransaction(amount);
-			Assert::AreEqual(amount, sorter.GetTotal());
+			expectEquals(amount, sorter.GetTotal());
 		}
 
-		TEST_METHOD(GetTotalTwoTransactions)
+		beginTest("GetTotalTwoTransactions");
 		{
 			CTransactionSorter sorter;
 			const double amount = 3.33;
 
 			sorter.AddTransaction(amount);
 			sorter.AddTransaction(amount);
-			Assert::AreEqual(amount * 2, sorter.GetTotal());
+			expectEquals(amount * 2, sorter.GetTotal());
 		}
 
-		TEST_METHOD(TransactionReturned)
+		beginTest("TransactionReturned");
 		{
 			CTransactionSorter sorter;
 			auto transaction = sorter.AddTransaction(3.33);
 		}
 
-		TEST_METHOD(TransactionHasAmount)
+		beginTest("TransactionHasAmount");
 		{
 			CTransactionSorter sorter;
 			const double amount = 3.33;
 
 			auto transaction = sorter.AddTransaction(amount);
-			Assert::AreEqual(amount, transaction->GetAmount());
+			expectEquals(amount, transaction->GetAmount());
 		}
 
-		TEST_METHOD(TransactionHasNegativeAmount)
+		beginTest("TransactionHasNegativeAmount");
 		{
 			CTransactionSorter sorter;
 			const double amount = -213.73;
 
 			auto transaction = sorter.AddTransaction(amount);
-			Assert::AreEqual(amount, transaction->GetAmount());
+			expectEquals(amount, transaction->GetAmount());
 		}
 
-		TEST_METHOD(TransactionHasGroup)
+		beginTest("TransactionHasGroup");
 		{
 			CTransactionSorter sorter;
 			const double amount = 3.33;
@@ -90,30 +70,30 @@ namespace TransactionSorterTest
 			transaction->GetGroup();
 		}
 
-		TEST_METHOD(TransactionGroupDefaultsToUnsorted)
+		beginTest("TransactionGroupDefaultsToUnsorted");
 		{
 			CTransactionSorter sorter;
 
 			const double amount = 3.33;
 			auto transaction = sorter.AddTransaction(amount);
 
-			const std::string unsortedGroup = "Unsorted";
-			Assert::AreEqual(unsortedGroup, transaction->GetGroup());
+			const std::string unsorted = "Unsorted";
+			expectEquals(unsorted, transaction->GetGroup());
 		}
 
-		TEST_METHOD(TransactionSetGroupWorks)
+		beginTest("TransactionSetGroupWorks");
 		{
 			CTransactionSorter sorter;
 
 			const double amount = 3.33;
 			auto transaction = sorter.AddTransaction(amount);
-			
+
 			const std::string group = "Shane";
 			transaction->SetGroup(group);
-			Assert::AreEqual(group, transaction->GetGroup());
+			expectEquals(group, transaction->GetGroup());
 		}
 
-		TEST_METHOD(GetTotalByGroup)
+		beginTest("GetTotalByGroup");
 		{
 			CTransactionSorter sorter;
 
@@ -121,16 +101,16 @@ namespace TransactionSorterTest
 			sorter.GetTotal(group);
 		}
 
-		TEST_METHOD(GetTotalByGroupDefault)
+		beginTest("GetTotalByGroupDefault");
 		{
 			CTransactionSorter sorter;
 
 			const std::string group = "Shane";
 			const double total = 0;
-			Assert::AreEqual(total, sorter.GetTotal(group));
+			expectEquals(total, sorter.GetTotal(group));
 		}
 
-		TEST_METHOD(GetTotalByGroupWithTransaction)
+		beginTest("GetTotalByGroupWithTransaction");
 		{
 			CTransactionSorter sorter;
 
@@ -140,10 +120,10 @@ namespace TransactionSorterTest
 			const std::string group = "Shane";
 			transaction->SetGroup(group);
 
-			Assert::AreEqual(amount, sorter.GetTotal(group));
+			expectEquals(amount, sorter.GetTotal(group));
 		}
 
-		TEST_METHOD(GetTotalByGroupWithNoTransaction)
+		beginTest("GetTotalByGroupWithNoTransaction");
 		{
 			CTransactionSorter sorter;
 
@@ -155,26 +135,26 @@ namespace TransactionSorterTest
 
 			const std::string otherGroup = "this group has no transactions";
 			const double otherGroupAmount = 0;
-			Assert::AreEqual(otherGroupAmount, sorter.GetTotal(otherGroup));
+			expectEquals(otherGroupAmount, sorter.GetTotal(otherGroup));
 		}
 
-		TEST_METHOD(GetNextUnsortedTransactionNullIfNone)
+		beginTest("GetNextUnsortedTransactionNullIfNone");
 		{
 			CTransactionSorter sorter;
-			Assert::IsNull(sorter.GetNextUnsortedTransaction().get());
+			expect(sorter.GetNextUnsortedTransaction().get() == nullptr);
 		}
 
-		TEST_METHOD(GetNextUnsortedTransactionValid)
+		beginTest("GetNextUnsortedTransactionValid");
 		{
 			CTransactionSorter sorter;
-			
+
 			const double amount = 3.33;
 			auto transaction = sorter.AddTransaction(amount);
 
-			Assert::AreEqual(transaction, sorter.GetNextUnsortedTransaction());
+			expect(transaction == sorter.GetNextUnsortedTransaction());
 		}
 
-		TEST_METHOD(AddTransactionWithDateAndDescription)
+		beginTest("AddTransactionWithDateAndDescription");
 		{
 			CTransactionSorter sorter;
 
@@ -184,7 +164,7 @@ namespace TransactionSorterTest
 			sorter.AddTransaction(amount, date, description);
 		}
 
-		TEST_METHOD(TransactionHasDateAndDescription)
+		beginTest("TransactionHasDateAndDescription");
 		{
 			const double amount = 1999.00;
 			const std::string date = "2016-05-02";
@@ -193,7 +173,7 @@ namespace TransactionSorterTest
 			CTransaction transaction(amount, date, description);
 		}
 
-		TEST_METHOD(TransactionGetDate)
+		beginTest("TransactionGetDate");
 		{
 			const double amount = 1999.00;
 			const std::string date = "2016-05-02";
@@ -201,10 +181,10 @@ namespace TransactionSorterTest
 
 			CTransaction transaction(amount, date, description);
 
-			Assert::AreEqual(date, transaction.GetDate());
+			expectEquals(date, transaction.GetDate());
 		}
 
-		TEST_METHOD(TransactionGetDescription)
+		beginTest("TransactionGetDescription");
 		{
 			const double amount = 1999.00;
 			const std::string date = "2016-05-02";
@@ -212,10 +192,10 @@ namespace TransactionSorterTest
 
 			CTransaction transaction(amount, date, description);
 
-			Assert::AreEqual(description, transaction.GetDescription());
+			expectEquals(description, transaction.GetDescription());
 		}
 
-		TEST_METHOD(AddTransactionGetDateAndDescription)
+		beginTest("AddTransactionGetDateAndDescription");
 		{
 			CTransactionSorter sorter;
 
@@ -226,17 +206,17 @@ namespace TransactionSorterTest
 
 			auto transaction = sorter.GetNextUnsortedTransaction();
 
-			Assert::AreEqual(date, transaction->GetDate());
-			Assert::AreEqual(description, transaction->GetDescription());
+			expectEquals(date, transaction->GetDate());
+			expectEquals(description, transaction->GetDescription());
 		}
 
-		TEST_METHOD(GetGroupCountNoTransactions)
+		beginTest("GetGroupCountNoTransactions");
 		{
 			CTransactionSorter sorter;
-			Assert::AreEqual(0, sorter.getTransactionCount());
+			expectEquals(0, sorter.getTransactionCount());
 		}
 
-		TEST_METHOD(GetGroupCount)
+		beginTest("GetGroupCount");
 		{
 			CTransactionSorter sorter;
 
@@ -246,35 +226,39 @@ namespace TransactionSorterTest
 			const std::string group = "Shane";
 			transaction->SetGroup(group);
 
-			Assert::AreEqual(1, sorter.getTransactionCount("Shane"));
+			expectEquals(1, sorter.getTransactionCount("Shane"));
 		}
 
-		TEST_METHOD(GetGroupCountNoGroupSpecified)
+		beginTest("GetGroupCountNoGroupSpecified");
 		{
 			CTransactionSorter sorter;
 
 			const double amount = 3.33;
 			sorter.AddTransaction(amount);
 
-			Assert::AreEqual(1, sorter.getTransactionCount());
+			expectEquals(1, sorter.getTransactionCount());
 
 			sorter.AddTransaction(amount);
-			Assert::AreEqual(2, sorter.getTransactionCount());
+			expectEquals(2, sorter.getTransactionCount());
 		}
 
-		TEST_METHOD(GetUnsortedTransactionCount)
+		beginTest("GetUnsortedTransactionCount");
 		{
 			CTransactionSorter sorter;
 
 			const double amount = 3.33;
 			auto transaction = sorter.AddTransaction(amount);
 
-			Assert::AreEqual(1, sorter.getUnsortedTransactionCount());
+			expectEquals(1, sorter.getUnsortedTransactionCount());
 
 			const std::string group = "Shane";
 			transaction->SetGroup(group);
 
-			Assert::AreEqual(0, sorter.getUnsortedTransactionCount());
+			expectEquals(0, sorter.getUnsortedTransactionCount());
 		}
-	};
-}
+	}
+};
+// Creating a static instance will automatically add the instance to the array
+// returned by UnitTest::getAllTests(), so the test will be included when you call
+// UnitTestRunner::runAllTests()
+static TransactionSorterTest test;
