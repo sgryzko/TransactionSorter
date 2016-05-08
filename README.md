@@ -9,9 +9,8 @@ My girlfriend and I have a joint credit card. Each bill, we have to calculate wh
 The app can be built as follows:
 
  1. Get the source code from [https://github.com/sgryzko/TransactionSorter](https://github.com/sgryzko/TransactionSorter).
- 2. Open TransactionSorter.sln in Visual Studio 2015.
+ 2. Choose the appropriate subfolder (ex. DesktopInterface), then open the Builds folder and choose your favorite IDE. If your IDE isn't shown, open the .jucer file using Projucer from JUCE.com to generate a new Builds subfolder and use that.
  3. Build the solution.
- 4. Check that CommandLineInterface.exe now exists in the folder TransactionSorter\Debug or TransactionSorter\Release.
 
 ##How to get your transactions:
 
@@ -27,8 +26,8 @@ American Express allows exporting of transactions into a simple csv file. Assumi
 
 Once you have built the project and downloaded your transactions, you're ready for sorting:
 
- 1. Run CommandLineInterface.exe. If you can't find it, see the **How to build** section.
- 2. Follow the instructions on-screen, pasting in the path of the CSV file then sorting your transactions one-by-one.
+ 1. Run the executable built using the **How to build** instructions.
+ 2. Follow the instructions on-screen, sorting your transactions one-by-one.
  3. Note the totals for each category.
  4. Pay your bill!
 
@@ -36,9 +35,9 @@ Once you have built the project and downloaded your transactions, you're ready f
 
 The business logic of the app can be tested as follows:
 
- 1. Follow the instructions in the **How to build** section.
- 2. All tests are contained in the UnitTests project. To run them from Visual Studio 2015, go to Test -> Run -> All Tests.
- 3. All tests should pass. If not, I've done something terribly wrong and please [post an issue on github](https://github.com/sgryzko/TransactionSorter/issues)!
+ 1. Follow the instructions in the **How to build** section to build the UnitTests project. 
+ 2. Run the executable that was built.
+ 3. View the test results in the console output. If any tests fail, an exception will be thrown. 
  
 ##Future development:
 
