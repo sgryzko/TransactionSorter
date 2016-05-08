@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ConsoleInterface">
+      <UniqueIdentifier>{77BED435-FB01-3D37-07A9-6D3609139D97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ConsoleInterface\Source">
+      <UniqueIdentifier>{228AF98E-D6A4-592E-A4B7-2BAAA312243F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Juce Modules">
+      <UniqueIdentifier>{422C46B7-0467-2DB0-BF3C-16DFCAFD69AC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Juce Modules\who_owes_what">
+      <UniqueIdentifier>{B170B15E-C3B7-6851-2F55-EF219E844A09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Juce Modules\who_owes_what\file_reader">
+      <UniqueIdentifier>{B2347D83-0156-DD7C-DCEA-57CD7A0E8C6A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Juce Modules\who_owes_what\transaction_sorter">
+      <UniqueIdentifier>{CA55DC6F-737B-A06C-2C90-8D2E77C3EC3F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Juce Library Code">
+      <UniqueIdentifier>{8B4D1BAA-6DB4-CAEC-A0FA-271F354D5C61}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\Main.cpp">
+      <Filter>ConsoleInterface\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\modules\who_owes_what\file_reader\file_reader.cpp">
+      <Filter>Juce Modules\who_owes_what\file_reader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\modules\who_owes_what\transaction_sorter\transaction_sorter.cpp">
+      <Filter>Juce Modules\who_owes_what\transaction_sorter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\modules\who_owes_what\who_owes_what.cpp">
+      <Filter>Juce Modules\who_owes_what</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\who_owes_what.cpp">
+      <Filter>Juce Library Code</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\JuceLibraryCode\modules\who_owes_what\file_reader\file_reader.h">
+      <Filter>Juce Modules\who_owes_what\file_reader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\JuceLibraryCode\modules\who_owes_what\transaction_sorter\transaction_sorter.h">
+      <Filter>Juce Modules\who_owes_what\transaction_sorter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\JuceLibraryCode\modules\who_owes_what\who_owes_what.h">
+      <Filter>Juce Modules\who_owes_what</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\JUCE\modules\who_owes_what\who_owes_what.h">
+      <Filter>Juce Modules\who_owes_what</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\JuceLibraryCode\AppConfig.h">
+      <Filter>Juce Library Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\JuceLibraryCode\JuceHeader.h">
+      <Filter>Juce Library Code</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include=".\resources.rc">
+      <Filter>Juce Library Code</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

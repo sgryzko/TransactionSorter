@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2015
+Project("{EDA05DC0-1855-3457-A0D1-85168E41A2EC}") = "DesktopInterface", "DesktopInterface.vcxproj", "{27443092-DBB7-3C7B-3AFE-D367B11E7D94}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{27443092-DBB7-3C7B-3AFE-D367B11E7D94}.Debug|Win32.ActiveCfg = Debug|Win32
+		{27443092-DBB7-3C7B-3AFE-D367B11E7D94}.Debug|Win32.Build.0 = Debug|Win32
+		{27443092-DBB7-3C7B-3AFE-D367B11E7D94}.Release|Win32.ActiveCfg = Release|Win32
+		{27443092-DBB7-3C7B-3AFE-D367B11E7D94}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
