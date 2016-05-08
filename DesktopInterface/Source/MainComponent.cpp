@@ -13,7 +13,7 @@
 //==============================================================================
 MainContentComponent::MainContentComponent()
 {
-	std::string transactionFile = "C:\\Users\\Shane\\Documents\\Visual Studio 2015\\Projects\\TransactionSorter\\TransactionSorter.Test\\ExampleTransactionFile.csv";
+	std::string transactionFile = "../../../ExampleTransactionFile.csv";
 
 	_sorter = std::make_shared<CTransactionSorter>();
 	_reader = std::make_shared<CFileReader>(_sorter.get()); // TODO: Should the CFileReader take in a shared_ptr instead of a raw pointer?
